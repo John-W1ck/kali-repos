@@ -6,7 +6,7 @@ echo -e "\e[1;32m___  //_/__    |__  /____  _/   ___  __ \__  ____/__  __ \_  __
 echo -e "\e[1;32m__  ,<  __  /| |_  /  __  /     __  /_/ /_  __/  __  /_/ /  / / /____ \ \e[0m"
 echo -e "\e[1;32m_  /| | _  ___ |  /____/ /      _  _, _/_  /___  _  ____// /_/ /____/ / \e[0m"
 echo -e "\e[1;32m/_/ |_| /_/  |_/_____/___/      /_/ |_| /_____/  /_/     \____/ /____/  \e[0m"
-echo -e "\e[1;31m#JOHN-WICK\e[0m"
+echo -e "\e[1;31m#JOHN-WICK\e[0m" $(echo "V1.0";)
 menu="Ver-repositorios-actualmente Agregar-repos-kali-1.0 Agregar-repos-kali-2.0 Agregar-repos-kali-rolling Ver-todos-los-repositorios-disponibles-de-kali-linux Vaciar-lista-de-repositorios Editar-repositorios Actualizar-repositorios Salir"
 select menu in $menu
 do
