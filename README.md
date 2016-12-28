@@ -20,15 +20,15 @@ Caracteristicas.
 
 Instalacion:
 
-# git clone https://github.com/John-W1ck/kali-repos.git
+git clone https://github.com/John-W1ck/kali-repos.git
 
-# cd  kali-repos
+cd  kali-repos
 
-# chmod a+x install.sh
+chmod a+x install.sh
 
-# ./install.sh
+./install.sh
 
-# kali-repos (desde la terminal)
+(desde la terminal ejecute el comando "repos")
 
 Demo:
 https://youtu.be/Kd6jyX-_qIk
