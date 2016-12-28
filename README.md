@@ -19,4 +19,16 @@ Caracteristicas.
 7- Puede acabar el script con Ctrl+C o escoja la opcion de "salir" para dejar la pantalla (terminal) limpia.
 
 Instalacion:
-git
+
+# git clone https://github.com/John-W1ck/kali-repos.git
+
+# cd  kali-repos
+
+# chmod a+x install.sh
+
+# ./install.sh
+
+# kali-repos (desde la terminal)
+
+Demo:
+https://youtu.be/Kd6jyX-_qIk
