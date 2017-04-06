@@ -30,11 +30,11 @@ git clone https://github.com/John-W1ck/kali-repos.git
 
 cd  kali-repos
 
-chmod a+x install.sh
+sudo chmod 777 install.sh
 
-./install.sh
+sudo ./install.sh
 
-(desde la terminal ejecute el comando "repos")
-
-# Demo:
+(desde la terminal ejecute el comando " sudo repos")
+El comando "sudo" siempre antes de llamar al script (usuario sin privilegios)
+ # Demo:
 https://youtu.be/Kd6jyX-_qIk
