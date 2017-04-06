@@ -1,3 +1,6 @@
+# Nueva version: 2.0 
+Ahora podras agregar los repositorios de kali linux rooling en tu distribucion favorita (basada en debian) e instalar cualquier herramienta de seguridad informatica...
+
 # kali-repos
 Kali-Repos es un script que basicamente y simplemente lo que hace es gestionar SOURCES.LIST donde guardamos los repositorios de nuestra distribucion "kali linux" en cualquiera de sus versiones.
 Kali-Repos surgio de la necesidad de cambiar repositorios de cualquier version de kali linux por necesidad de cumplir algunas dependencia que NO encontramos en versiones nuevas de kali linux como ejemplo kali linux 2016.1 rolling.
