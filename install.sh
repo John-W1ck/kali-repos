@@ -11,7 +11,7 @@ mv repos /usr/local/bin
 clear
 echo
 echo -e "\e[1;32m KALI REPOS INSTALADO CORRECTAMENTE\e[0m"
-echo -e "\e[1;32m Ejecute en la terminal el comando \e[0m\e[1;31mrepos\e[0m"
+echo -e "\e[1;32m Ejecute en la terminal el comando \e[0m\e[1;31msudo repos\e[0m"
 echo
 else
 echo
