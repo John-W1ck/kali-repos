@@ -314,10 +314,9 @@ apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6
 sleep 1
 sudo echo '# Kali linux rolling' >> /etc/apt/sources.list
 sudo echo 'deb http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
-
+echo -e "\e[1;34m Es hora de actualizar los repositorios Opcion (3)\e[0m"
+echo -e "\e[1;34m Si lo que desea es instalar todas la herremienta de kali-linux en su distribucion favorita ejecute el comando sudo apt-get install kali-linux-full\e[0m"
 echo -e "\e[1;32mListo..!\e[0m"
-sleep 2
-clear
 echo -e "\e[1;32m **KALI REPOS**\e[0m"
 SPEED=0.1
 echo -e "\e[1;32m1) Agregar-los-repositporios-de-kali-linux\e[0m"
@@ -338,12 +337,9 @@ echo -e "\e[1;32mEspere....\e[0m"
 sudo sed -i '/# Kali linux rolling/d' /etc/apt/sources.list
 sleep 1
 perl -pi -e "s[deb http://http.kali.org/kali kali-rolling main contrib non-free][]g" /etc/apt/sources.list
-sleep 1
-sudo sed '/^$/d' /etc/apt/sources.list
 sleep 2
-echo -e "\e[1;34mListo..!\e[0m"
-sleep 1
-clear
+echo -e "\e[1;32mListo..!\e[0m"
+echo
 echo -e "\e[1;32m **KALI REPOS**\e[0m"
 SPEED=0.1
 echo -e "\e[1;32m1) Agregar-los-repositporios-de-kali-linux\e[0m"
@@ -364,6 +360,7 @@ echo -e "\e[1;31mEspere...\e[0m"
 sudo apt-get update 1> /dev/null
 clear
 echo -e "\e[1;32m REPOSITORIOS ACTUALIZADO CORRECTAMENTE\e[0m"
+echo -e "\e[1;34m Recuerde si lo que desea es instalar todas la herremienta de kali-linux en su distribucion favorita ejecute el comando sudo apt-get install kali-linux-full\e[0m"
 echo -e "\e[1;32m **KALI REPOS**\e[0m"
 SPEED=0.1
 echo -e "\e[1;32m1) Agregar-los-repositporios-de-kali-linux\e[0m"
