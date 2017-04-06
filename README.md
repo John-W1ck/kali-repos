@@ -8,7 +8,7 @@ Kali-Repos surgio de la necesidad de cambiar repositorios de cualquier version d
 - Usuario requerido: root
 - En una nueva version proximamente sera compatible con cualquer distribucion deribada de Debian para instalar programas/herramientas en sus distribuciones preferidas, esto es y siempre fue posible, agregando las keys de kali linux.
 
-Caracteristicas.
+# Caracteristicas.
 
 1- Kali-Repos imprime en pantalla (terminal) de forma numerica todas las lineas de SOURCES.LIST para que usted pueda ver que repositorios tiene actualmente.
 
@@ -24,7 +24,7 @@ Caracteristicas.
 
 7- Puede acabar el script con Ctrl+C o escoja la opcion de "salir" para dejar la pantalla (terminal) limpia.
 
-Instalacion:
+# Instalacion:
 
 git clone https://github.com/John-W1ck/kali-repos.git
 
@@ -36,5 +36,5 @@ chmod a+x install.sh
 
 (desde la terminal ejecute el comando "repos")
 
-Demo:
+# Demo:
 https://youtu.be/Kd6jyX-_qIk
