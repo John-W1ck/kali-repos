@@ -6,7 +6,7 @@ Kali-Repos es un script que basicamente y simplemente lo que hace es gestionar S
 Kali-Repos surgio de la necesidad de cambiar repositorios de cualquier version de kali linux por necesidad de cumplir algunas dependencia que NO encontramos en versiones nuevas de kali linux como ejemplo kali linux 2016.1 rolling.
 
 - Usuario requerido: root
-- En una nueva version proximamente sera compatible con cualquer distribucion deribada de Debian para instalar programas/herramientas en sus distribuciones preferidas, esto es y siempre fue posible, agregando las keys de kali linux.
+- En una nueva version proximamente sera compatible con cualquier distribucion derivada de Debian para instalar programas/herramientas en sus distribuciones preferidas, esto es y siempre fue posible, agregando las keys de kali linux.
 
 # Caracteristicas.
 
