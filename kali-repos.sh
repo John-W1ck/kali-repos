@@ -1,398 +1,323 @@
-#!/bin/bash
-verde='echo -e \e[1;32m'
-amarillo='echo -e \e[1;33m'
-rojo='echo -e \e[1;31m'
-blanco='echo -e \e[1;37m'
-azul='echo -e \e[1;34m'
-cain='echo -e \e[0;36m'
-cain2='echo -e \e[1;36m'
-purpura='echo -e \e[1;35m'
-maron='echo -e \e[0;34m'
-gris='echo -e \e[0;37m'
-banner=' 
-  _____ ______________________   ________________________________________
- ___  //_/__    |__  /____  _/   ___  __ \__  ____/__  __ \_  __ \_  ___/
- __  ,<  __  /| |_  /  __  /     __  /_/ /_  __/  __  /_/ /  / / /____ \
- _  /| | _  ___ |  /____/ /      _  _, _/_  /___  _  ____// /_/ /____/ /
- /_/ |_| /_/  |_/_____/___/      /_/ |_| /_____/  /_/     \____/ /____/'
-version=' #JOHN-WICK V2.0'
+#!/bin/bash 
+#
+###################
+#CREANDO FUNCIONES#
+###################
+#
+#############################################################################
+echo 
+f_banner() {
+echo -e "\e[0;32m██╗  ██╗ █████╗ ██╗     ██╗    ██████╗ ███████╗██████╗  ██████╗ ███████╗    
+██║ ██╔╝██╔══██╗██║     ██║    ██╔══██╗██╔════╝██╔══██╗██╔═══██╗██╔════╝    
+█████╔╝ ███████║██║     ██║    ██████╔╝█████╗  ██████╔╝██║   ██║███████╗    
+██╔═██╗ ██╔══██║██║     ██║    ██╔══██╗██╔══╝  ██╔═══╝ ██║   ██║╚════██║    
+██║  ██╗██║  ██║███████╗██║    ██║  ██║███████╗██║     ╚██████╔╝███████║    
+╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝      ╚═════╝ ╚══════╝"
+echo -e "\e[0;31mAutor: \e[0;37mJohn-Wick   \e[0;31mVersion: \e[0;37m3.0\e[0;31m   Contacto: \e[0;37mhablemosdehacking@gmail.com\e[0m"
+echo
+echo
+}
+##############################################################################
+f_auto_apt() {
 clear
 echo
-$amarillo "$banner"
-$rojo "$version"
-$purpura ""
-menu="Ver-repositorios-actualmente Agregar-repos-kali-1.0 Agregar-repos-kali-2.0 Agregar-repos-kali-rolling Ver-todos-los-repositorios-disponibles-de-kali-linux Vaciar-lista-de-repositorios Editar-repositorios Actualizar-repositorios Estoy-en-otra-distribucion Salir"
-select menu in $menu
-do
-  case $menu in
-       Ver-repositorios-actualmente) clear
-echo -e "\e[1;32m REPOSITORIOS ACTUALMENTE\e[0m"
-cat -n /etc/apt/sources.list  ;
+f_banner
+echo -e "\e[0;31m[+]\e[0;37m Comprobando instalacion en \e[0;32m/usr/local/bin\e[0m"
+if [ -e /usr/local/bin/auto-apt ]
+   then
+	echo
+	echo -e "\e[0;31m[+]\e[0;37m Lanzando\e[0;32m auto-apt\e[0;37m...\e[0m"
+	sudo auto-apt
+	sleep 5
+	f_menu
+   else
+	echo
+	echo -e "\e[0;31m[+]\e[0;37m No esta instalado \e[0;32mauto-apt\e[0m"
+	read -p "[Pulse Enter para volver al menu principal.] "
+	f_menu
+fi
+}
+##############################################################################
+f_ver_repositorios() {
+clear
 echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
+f_banner
 echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Agregar-repos-kali-1.0) clear
-echo -e "\e[1;32m AGREGANDO LOS REPOSITORIOS DE KALI LINUX MOTO (1.0)\e[0m"
+echo -e "\e[0;31m[*]\e[0;37m Repositorios actualmente.\e[0m" $(echo -e "\e[0;32m ")
+echo
+cat -n /etc/apt/sources.list
+echo -e "\e[0;37m "
+read -p "[Pulse Enter para volver al menu principal.] "
+f_menu
+}
+##########################################################
+f_editar() {
+clear
+echo
+f_banner
+echo -e "\e[0;31m[+]\e[0;37m Abriendo source.list\e[0m"; sleep 3
+nano /etc/apt/sources.list
+clear
+f_menu
+}
+##########################################################
+f_actualizar() {
+clear
+echo
+f_banner
+echo
+echo -e "\e[0;31m[Actualizando Sources.list] \e[0;32mEspere por favor....\e[0m";  sleep 1
+echo -e "\e[0;37m "
+apt -y update 
+echo -e "\e[0;31m "
+read -p "[Pulse Enter para volver al menu principal] "
+f_menu
+}
+##########################################################
+f_moto() {
+clear
+echo
+f_banner
+echo
+echo -e "\e[0;31m[+]\e[0;37m Agregando los repositorios y actualizando sorces.list\e[0m"
+echo -e "\e[0;31mEspere...\e[0m" ; sleep 5
 echo '#KALI LINUX MOTO (1.0)' >> /etc/apt/sources.list  
 echo 'deb http://old.kali.org/kali moto main non-free contrib' >> /etc/apt/sources.list
 echo '# For source package access, uncomment the following line' >> /etc/apt/sources.list
 echo '# deb-src http://old.kali.org/kali moto main non-free contrib' >> /etc/apt/sources.list
+sudo apt update
+echo -e "\e[0;31m[+]\e[0;32m Repsitorios agregados y actualizados correctamente.."
+echo -e "\e[0;37m " $(echo -e "\e[0;31m ")
+read -p "[Pulse ENTER para volver al menu principal] "
+f_menu
+}
+###########################################################
+f_sana() {
+clear
 echo
-echo -e "\e[1;32m REPOSITORIOS ACTUALMENTE.\e[0m"
-cat -n /etc/apt/sources.list  ;
+f_banner
 echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Agregar-repos-kali-2.0) clear
-echo -e "\e[1;32m AGREGANDO LOS REPOSITORIOS DE KALI LINUX SANA (2.0)\e[0m"
+echo -e "\e[0;31m[+]\e[0;37m Agregando los repositorios y actualizando sorces.list\e[0m"
+echo -e "\e[0;31mEspere...\e[0m" ; sleep 5
 echo '#KALI LINUX SANA(2.0)' >> /etc/apt/sources.list  
 echo 'deb http://old.kali.org/kali sana main non-free contrib' >> /etc/apt/sources.list
 echo '# For source package access, uncomment the following line' >> /etc/apt/sources.list
 echo '# deb-src http://old.kali.org/kali sana main non-free contrib' >> /etc/apt/sources.list
+sudo apt update
+echo -e "\e[0;31m[+]\e[0;32m Repsitorios agregados y actualizados correctamente.."
+echo -e "\e[0;37m " $(echo -e "\e[0;31m ")
+read -p "[Pulse ENTER para volver al menu principal] "
+f_menu
+}
+############################################################
+f_rolling() {
+clear
 echo
-echo -e "\e[1;32m REPOSITORIOS ACTUALMENTE\e[0m"
-cat -n /etc/apt/sources.list ;
+f_banner
 echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Agregar-repos-kali-rolling) clear
-echo -e "\e[1;32m AGREGANDO LOS REPOSITORIOS DE KALI LINUX ROLLING\e[0m"
+echo -e "\e[0;31m[+]\e[0;37m Agregando los repositorios y actualizando sorces.list\e[0m"
+echo -e "\e[0;31mEspere...\e[0m" ; sleep 5
 echo '#KALI LINUX ROLLING' >> /etc/apt/sources.list  
 echo 'deb http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
 echo '# For source package access, uncomment the following line' >> /etc/apt/sources.list
 echo '# deb-src http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
+sudo apt update
+echo -e "\e[0;31m[+]\e[0;32m Repsitorios agregados y actualizados correctamente.."
+echo -e "\e[0;37m " $(echo -e "\e[0;31m ")
+read -p "[Pulse ENTER para volver al menu principal] "
+f_menu
+}
+############################################################
+f_error() {
 echo
-echo -e "\e[1;32m REPOSITORIOS ACTUALMENTE\e[0m"
-cat -n /etc/apt/sources.list ;
+echo -e "\e[0;31m<**********************>\e[0m"
+echo -e "\e[0;31m<*******>>ERROR<<******>\e[0m"
+echo -e "\e[0;31m<**********************>\e[0m" ; sleep 2
+}
+#
+############################################################
+f_salir() {
 echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Ver-todos-los-repositorios-disponibles-de-kali-linux) clear
-SPEED=0.1
-echo -e "\e[1;32m KALI LINUX REPOSITORIOS\e[0m"
-echo
-sleep $SPEED
-echo -e "\e[1;32m KALI LINUX ROLLING\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m1- deb http://http.kali.org/kali kali-rolling main contrib non-free\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m2- # For source package access, uncomment the following line\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3- # deb-src http://http.kali.org/kali kali-rolling main contrib non-free\e[0m"
-sleep $SPEED
-echo -e "\e[1;32m KALI LINUX SANA (2.0)\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m1- deb http://old.kali.org/kali sana main non-free contrib\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m2- # For source package access, uncomment the following line\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m3- # deb-src http://old.kali.org/kali sana main non-free contrib\e[0m"
-sleep $SPEED
-echo -e "\e[1;32m KALI LINUX MOTO (1.0)\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m1- deb http://old.kali.org/kali moto main non-free contrib\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m2- # For source package access, uncomment the following line\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m3- # deb-src http://old.kali.org/kali moto main non-free contrib\e[0m"
-echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Vaciar-lista-de-repositorios) clear
-echo -e "\e[1;32mVACIANDO LA LISTA SOURCES.LIST\e[0m"
-rm /etc/apt/sources.list
-sleep 1
-touch /etc/apt/sources.list
+echo -e "\e[0;31m[+]\e[0;37m Saliendo del script...\e[0m"
+sleep 3
 clear
-echo
-echo -e "\e[1;32mLISTA COMPLETAMENTE VACIA\e[0m"
-echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Editar-repositorios) clear
-echo -e "\e[1;32mABIRENDO SOURCES.LIST\e[0m"
-sleep 2
-nano /etc/apt/sources.list
-clear
-echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Actualizar-repositorios) clear
-echo -e "\e[1;32mACTUALIZANDO REPOSITORIOS.\e[0m"
-sleep 1
-echo -e "\e[1;31mEspere...\e[0m"
-apt-get update 1> /dev/null
-clear
-echo -e "\e[1;32m REPOSITORIOS ACTUALIZADO CORRECTAMENTE\e[0m"
-echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-echo
-SPEED=0.1
-echo -e "\e[1;32m1) Ver-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Agregar-repos-kali-1.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Agregar-repos-kali-2.0\e[0m"
-sleep $SPEED
-echo -e "\e[1;35m4) Agregar-repos-kali-rolling\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m5) Ver-todos-los-repositorios-de-kali-linux-disponibles\e[0m"
-sleep $SPEED
-echo -e "\e[1;33m6) Vaciar-la-list-de-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;37m7) Editar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;36m8) Actualizar-repos\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m9) Estoy-en-otra-distribucion\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m10) Salir\e[0m"
-       ;;
-       Estoy-en-otra-distribucion) clear
-echo
-$amarillo "$banner"
-$rojo "$version"
-$purpura ""
-menu="Agregar-los-repositporios-de-kali-linux Borrar-los-repositorios-de-kali-linux Actualizar-los-repositorios Salir" 
-select menu in $menu
-do
-  case $menu in
-Agregar-los-repositporios-de-kali-linux) clear
-$amarillo "$banner"
-$rojo "$version"
-echo -e "\e[1;32mSE AGREGARAN LOS REPOSITORIOS DE KALI LINUX EN SU DISTRIBUCION\e[0m" $(uname -n)
-sleep 2
-echo -e "\e[1;32mEspere....\e[0m"
-apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6
-sleep 1
-sudo echo '# Kali linux rolling' >> /etc/apt/sources.list
-sudo echo 'deb http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
-echo -e "\e[1;34m Es hora de actualizar los repositorios Opcion (3)\e[0m"
-echo -e "\e[1;34m Si lo que desea es instalar todas la herremienta de kali-linux en su distribucion favorita ejecute el comando sudo apt-get install kali-linux-full\e[0m"
-echo -e "\e[1;32mListo..!\e[0m"
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-SPEED=0.1
-echo -e "\e[1;32m1) Agregar-los-repositporios-de-kali-linux\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Borrar-los-repositorios-de-kali-linux\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Actualizar-los-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m4) Salir\e[0m"
-;;
-Borrar-los-repositorios-de-kali-linux) clear
-echo
-$amarillo "$banner"
-$rojo "$version"
-echo -e "\e[1;32mSe eliminara los repositorios de kali linux.\e[0m"
-sleep 1
-echo -e "\e[1;32mEspere....\e[0m"
-sudo sed -i '/# Kali linux rolling/d' /etc/apt/sources.list
-sleep 1
-perl -pi -e "s[deb http://http.kali.org/kali kali-rolling main contrib non-free][]g" /etc/apt/sources.list
-sleep 2
-echo -e "\e[1;32mListo..!\e[0m"
-echo
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-SPEED=0.1
-echo -e "\e[1;32m1) Agregar-los-repositporios-de-kali-linux\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Borrar-los-repositorios-de-kali-linux\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Actualizar-los-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m4) Salir\e[0m"
-;;
-Actualizar-los-repositorios) clear
-echo
-$amarillo "$banner"
-$rojo "$version"
-echo -e "\e[1;32mACTUALIZANDO REPOSITORIOS.\e[0m"
-sleep 1
-echo -e "\e[1;31mEspere...\e[0m"
-sudo apt-get update 1> /dev/null
-clear
-echo -e "\e[1;32m REPOSITORIOS ACTUALIZADO CORRECTAMENTE\e[0m"
-echo -e "\e[1;34m Recuerde si lo que desea es instalar todas la herremienta de kali-linux en su distribucion favorita ejecute el comando sudo apt-get install kali-linux-full\e[0m"
-echo -e "\e[1;32m **KALI REPOS**\e[0m"
-SPEED=0.1
-echo -e "\e[1;32m1) Agregar-los-repositporios-de-kali-linux\e[0m"
-sleep $SPEED
-echo -e "\e[1;34m2) Borrar-los-repositorios-de-kali-linux\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m3) Actualizar-los-repositorios\e[0m"
-sleep $SPEED
-echo -e "\e[1;31m4) Salir\e[0m"
-;;
-       Salir) clear
-echo -e "\e[1;31msaliendo...\e[0m" ; sleep 2
-clear
+reset
 exit 0
-       ;;
-       *) clear 
-       echo -e "\e[1;31m Opcion incorecta! Saliendo.. \e[0m"
-       sleep 2
-       exit 0
-       echo
-  esac
-done
-       ;;
-       Salir) clear
-echo -e "\e[1;31msaliendo...\e[0m" ; sleep 2
+}
+############################################################
+f_kali_moto() {
 clear
-exit 0
-       ;;
-       *) clear 
-       echo -e "\e[1;31m Opcion incorecta! Saliendo.. \e[0m"
-       sleep 2
-       exit 0
-       echo
-  esac
-done
+echo
+f_banner
+echo -e "\e[0;31m[+]\e[0;37m Se instalara el repositorio de kali linux moto a su distribucion\e[0;31m "$(uname -n)
+echo -e "\e[0;31mEspere...\e[0m"; sleep 5
+sudo  apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6
+sudo echo '#KALI LINUX MOTO (1.0)' >> /etc/apt/sources.list  
+sudo echo 'deb http://old.kali.org/kali moto main non-free contrib' >> /etc/apt/sources.list
+sudo echo '# For source package access, uncomment the following line' >> /etc/apt/sources.list
+sudo echo '# deb-src http://old.kali.org/kali moto main non-free contrib' >> /etc/apt/sources.list
+sudo apt update 
+echo -e "\e[0;31m[+]\e[0;32m Instalado y actualizado correctamente..\e[0m"
+echo -e "\e[0;37m " $(echo -e "\e[0;31m ")
+read -p "[Pulse ENTER para volver al menu principal] "
+f_menu
+}
+############################################################
+f_instalar_kali() {
+clear
+echo
+f_banner
+echo -e "\e[0;31m[+]\e[0;37m Instalando repositorios kali linux rolling.....\e[0m"
+sudo  apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6
+echo '#KALI LINUX ROLLING' >> /etc/apt/sources.list  
+echo 'deb http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
+echo '# For source package access, uncomment the following line' >> /etc/apt/sources.list
+echo '# deb-src http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
+echo -e "\e[0;31m[+]\e[0;37m Actualizando nuevos repositorios...\e[0m"
+echo -e "\e[0;36m "
+sudo apt-get  update
+echo -e "\e[0;31m[+]\e[0;37m Instalando kali linux\e[0;32m full\e[0;37m en su distribucion :\e[0m" $(uname -n)
+echo -e "\e[0;36m "
+sudo apt-get install kali-linux-full
+echo -e "\e[0;31m[+]\e[0;37m Kali linux full se ha instalado correctamente.\e[0m"
+echo -e "\e[0;31m "
+read -p "[PULSE ENTER PARA VOLVER AL MENU PRINCIPAL]"
+f_menu
+}
+############################################################
+f_kali_sana() {
+clear
+echo
+f_banner
+echo -e "\e[0;31m[+]\e[0;37m Se instalara el repositorio de kali linux moto a su distribucion\e[0;31m "$(uname -n)
+echo -e "\e[0;31mEspere...\e[0m"; sleep 5
+sudo  apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6
+echo '#KALI LINUX SANA(2.0)' >> /etc/apt/sources.list  
+echo 'deb http://old.kali.org/kali sana main non-free contrib' >> /etc/apt/sources.list
+echo '# For source package access, uncomment the following line' >> /etc/apt/sources.list
+echo '# deb-src http://old.kali.org/kali sana main non-free contrib' >> /etc/apt/sources.list
+sudo apt update 
+echo -e "\e[0;31m[+]\e[0;32m Instalado y actualizado correctamente..\e[0m"
+echo -e "\e[0;37m " $(echo -e "\e[0;31m ")
+read -p "[Pulse ENTER para volver al menu principal] "
+f_menu
+}
+############################################################
+f_kali_rolling() {
+clear
+echo
+f_banner
+echo -e "\e[0;31m[+]\e[0;37m Se instalara el repositorio de kali linux moto a su distribucion\e[0;31m "$(uname -n)
+echo -e "\e[0;31mEspere...\e[0m"; sleep 5
+sudo  apt-key adv --keyserver pgp.mit.edu --recv-keys ED444FF07D8D0BF6
+echo '#KALI LINUX ROLLING' >> /etc/apt/sources.list  
+echo 'deb http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
+echo '# For source package access, uncomment the following line' >> /etc/apt/sources.list
+echo '# deb-src http://http.kali.org/kali kali-rolling main contrib non-free' >> /etc/apt/sources.list
+sudo apt update 
+echo -e "\e[0;31m[+]\e[0;32m Instalado y actualizado correctamente..\e[0m"
+echo -e "\e[0;37m " $(echo -e "\e[0;31m ")
+read -p "[Pulse ENTER para volver al menu principal] "
+f_menu
+}
+############################################################
+f_instalar_repos() {
+clear
+echo
+f_banner
+echo
+echo -e "\e[0;31m[+]\e[0;37m Repositorios disponibles para instalar.\e[0m"
+echo "---------------------------------------------"
+echo -e "\e[0;31m[1]\e[0;37m kali linux Moto.\e[0m"
+echo -e "\e[0;31m[2]\e[0;37m kali linux Sana.\e[0m"
+echo -e "\e[0;31m[3]\e[0;37m kali linux Rolling.\e[0m"
+echo -e "\e[0;31m[4]\e[0;37m Menu principal.\e[0m"
+echo -e "\e[0;31m[5]\e[0;37m Salir.\e[0m"
+echo -e "\e[0;37m "
+	read -p "Opcion> " OPCION2
+case $OPCION2 in
+	1) f_kali_moto
+	;;
+	2) f_kali_sana
+	;;
+	3) f_kali_rolling
+	;;
+	4) f_menu
+	;;
+	5) f_salir
+	;;
+	*) f_error
+esac
+}
+############################################################
+				f_agregar_repos() {
+				clear
+				echo
+				f_banner
+				echo
+				echo -e "\e[0;31m[+]\e[0;37m Repositorios disponibles para agregar.\e[0m"
+				echo "---------------------------------------------"
+				echo -e "\e[0;31m[1]\e[0;37m Moto.\e[0m"
+				echo -e "\e[0;31m[2]\e[0;37m Sana.\e[0m"
+				echo -e "\e[0;31m[3]\e[0;37m Rolling.\e[0m"
+				echo -e "\e[0;31m[4]\e[0;37m Menu principal.\e[0m"
+				echo -e "\e[0;31m[5]\e[0;37m Salir.\e[0m"
+				echo -e "\e[0;37m "
+				read -p "Opcion> " OPCION
+				case $OPCION in
+					1) f_moto
+					;;
+					2) f_sana
+					;;
+					3) f_rolling
+					;;
+					4) f_menu
+					;;
+					5) f_salir
+					;;
+					*) f_error
+				esac
+}
+########################################################
+f_menu() {
+clear
+echo
+f_banner
+echo
+echo -e "\e[0;31m[Menu principal del script]\e[0;37m Tome usted la decision.\e[0m"
+echo "---------------------------------------------------"
+echo -e "\e[0;31m[1]\e[0;37m Listar repositorios en pantalla.\e[0m"
+echo -e "\e[0;31m[2]\e[0;37m Instalar repositorios \e[0;32m(solo si NO esta en kali linux)\e[0m"
+echo -e "\e[0;31m[3]\e[0;37m Actualizar repositorios.\e[0m"
+echo -e "\e[0;31m[4]\e[0;37m Lanzar Auto-Apt.\e[0;32m(solo SI esta instalado.)\e[0m"
+echo -e "\e[0;31m[5]\e[0;37m Editar sources.list\e[0m"
+echo -e "\e[0;31m[6]\e[0;37m Agregar repositorios a sources.list\e[0;32m (Solo SI esta en kali linux)\e[0m"
+echo -e "\e[0;31m[7]\e[0;37m Instalar \e[0;31mkali linux full\e[0;37m en mi distribucion favorita.\e[0;32m (Solo si NO esta en kali linux)\e[0m"
+echo -e "\e[0;31m[8]\e[0;37m Salir.\e[0m"
+echo -e "\e[0;37m "
+read -p "Opcion> " OPCION1
+
+	case $OPCION1 in
+		1) f_ver_repositorios
+		;;
+		2) f_instalar_repos
+		;;
+		3) f_actualizar
+		;;
+		4) f_auto_apt
+		;;
+		5) f_editar
+		;;
+		6) f_agregar_repos
+		;;
+		7) f_instalar_kali
+		;;
+		8) f_salir
+		;;
+		*) f_error
+		;;
+	esac
+}
+########################################################
+while true; do f_menu; done
+
